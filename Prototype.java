@@ -28,7 +28,7 @@ public class Prototype
 	public void gameStart()
 	{
 		 //START OF GAME
-	    System.out.println("--------------------------------------"); 
+	    System.out.println("---------------------------------------"); 
 	    System.out.println(user +" You are a man fighting for your love of your life! You must rescue her in order for you to successfully finish this mission!");
 	}
 	
