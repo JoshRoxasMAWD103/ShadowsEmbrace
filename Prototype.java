@@ -46,9 +46,9 @@ public class ShadowsEmbrace
 	
 	public void playerSetUp(){
 		
-	    System.out.println("\t------------------------------------------------"); 
-	    System.out.println("\n\tWelcome to Shadow's Embrace.");
-	    System.out.print("\tYour adventure begins here. Please enter a name: ");
+	        System.out.println("\t------------------------------------------------"); 
+	        System.out.println("\n\tWelcome to Shadow's Embrace.");
+	        System.out.print("\tYour adventure begins here. Please enter a name: ");
 		playerName = s.nextLine();
 		System.out.println("\t------------------------------------------------"); 
 		
@@ -183,10 +183,6 @@ public class ShadowsEmbrace
 	public void fight()
 	{
 		monsterRandomizer = monster[r.nextInt(monster.length)];
-		
-		System.out.println("\n------------------------------------------------------------------\n");
-		System.out.println("\t>Your HP: "+ playerHP);
-
 		//GHOUL STATS
 		if (monsterRandomizer.equals("Ghoul"))
 		{
@@ -272,6 +268,11 @@ public class ShadowsEmbrace
 			
 			System.out.println("\tMonster HP: " + monsterHP + "\n\tMonster Damage: " + monsterDamage);
 		}
+		
+		System.out.println("\n------------------------------------------------------------------\n");
+		System.out.println("\t>Your HP: "+ playerHP);
+
+		
 		System.out.println("Choose:");
 		System.out.println("\n[1:] Attack");
 		System.out.println("[2:] Use an item.");
