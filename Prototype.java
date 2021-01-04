@@ -11,7 +11,7 @@ public class ShadowsEmbrace
 	String playerName, choice, role, playerWeapon, playerClass, playerSkills;
 	int maxPlayerHP, maxPlayerMana, maxPlayerArmor, 
 		hpAdd, manaAdd, armorAdd, 
-		playerHP, playerMana, playerArmor;
+		playerHP, playerMana, playerArmor, skillChoice;
 	int playerDamage;
 	int currentPlayerDamage;
 	
@@ -77,6 +77,7 @@ public class ShadowsEmbrace
 			playerClass = "Warrior";
 			playerWeapon = "Long Sword";
 			playerSkills = "\n\t[1]Punch \n\t[2]Blade Surge \n\t[3]Hail of Blades";
+			
 		}
 		
 		else if (role.equals("2"))
@@ -135,7 +136,157 @@ public class ShadowsEmbrace
 		System.out.println("\tPress Enter to Continue");
 		choice = s.nextLine();
 		System.out.println("\n------------------------------------------------------------------\n");
+		
 	}
+	
+	//DIFFERENT TYPE OF SKILLS PER ROLE STARTS HERE
+	
+	public void warriorSkills ()
+	{
+		
+		System.out.println("Choose a skill! " + "\n\t[1]Punch \n\t[2]Blade Surge \n\t[3]Hail of Blades");
+		
+		System.out.print("Choose: ");
+		skillChoice = s.nextInt();
+		if (skillChoice == 1)
+		{
+			System.out.println("\nYou used Punch to damage the enemy for 5 HP!");
+			monsterHP = monsterHP - 5;
+		}
+		
+		
+		
+		else if (skillChoice == 2)
+		{
+			if (playerMana >= 10)
+			{
+			playerMana = playerMana -10;
+			System.out.println("\nYou used Blade Surge to damage the enemy for 15 HP!");
+			
+			monsterHP = monsterHP - 15;
+			}
+			
+			else 
+			{
+				System.out.println("\nYou need 10 mana to cast this skill! You currently have " + playerMana + " mana");
+			}
+		}
+		
+		
+		else if (skillChoice == 3)
+		{
+			if (playerMana >= 40)
+			{
+			playerMana = playerMana - 40;
+			System.out.println("\nYou used Hail of Blades to damage the enemy for 100HP!");
+			monsterHP = monsterHP - 100;
+		
+			}
+			else 
+			{
+				System.out.println("\nYou need 40 mana to cast this skill! You currently have " + playerMana + " mana");
+			}
+		}
+	}
+	
+	public void mageSkills()
+	{
+		if (skillChoice == 1)
+		{
+			if (playerMana >= 5)
+			{
+			playerMana = playerMana - 5;
+			System.out.println("You used Fireball to damage the enemy for 10 HP!");
+			monsterHP = monsterHP - 10;
+			}
+			
+			else 
+			{
+				System.out.println("You need 5 mana to cast this skill! You currently have " + playerMana + " mana");
+			}
+		}
+		
+		
+		else if (skillChoice == 2)
+		{
+			if (playerMana >= 40)
+			{
+			playerMana = playerMana -40;
+			System.out.println("You used Thunder Bolt to damage the enemy for 20HP!");
+			
+			monsterHP = monsterHP - 20;
+			}
+			
+			else 
+			{
+				System.out.println("You need 40 mana to cast this skill! You currently have " + playerMana + " mana");
+			}
+		}
+		
+		
+		else if (skillChoice == 3)
+		{
+			if (playerMana >= 100)
+			{
+			playerMana = playerMana - 100;
+			System.out.println("You used Hinokami Kagura to damage the enemy for 150HP!");
+			monsterHP = monsterHP - 150;
+		
+			}
+			else 
+			{
+				System.out.println("You need 100 mana to cast this skill! You currently have " + playerMana + " mana");
+			}
+		
+		}
+	}
+	
+	public void archerSkills()
+	{
+		if (skillChoice == 1)
+		{
+			
+			System.out.println("You used Arrow Shot to damage the enemy for 10HP!");
+			monsterHP = monsterHP - 10;
+			
+		}
+		
+		
+		else if (skillChoice == 2)
+		{
+			if (playerMana >= 25)
+			{
+			playerMana = playerMana -25;
+			System.out.println("You used Spectral Arrow to damage the enemy for 20HP!");
+			
+			monsterHP = monsterHP - 20;
+			}
+			
+			else 
+			{
+				System.out.println("You need 25 mana to cast this skill! You currently have " + playerMana + " mana");
+			}
+		}
+		
+		
+		else if (skillChoice == 3)
+		{
+			if (playerMana >= 70)
+			{
+			playerMana = playerMana - 70;
+			System.out.println("You used Enchanted Arrow to damage the enemy for 120 HP!");
+			monsterHP = monsterHP - 120;
+		
+			}
+			else 
+			{
+				System.out.println("You need 70 mana to cast this skill! You currently have " + playerMana + " mana");
+			}
+		
+		}
+	}
+	
+	//DIFFERENT TYPE OF SKILLS PER ROLE ENDS HERE
 	
 	
 	public void firstMonsterWave()
@@ -150,16 +301,16 @@ public class ShadowsEmbrace
 			//GHOUL STATS
 			if (monsterRandomizer.equals("Ghoul"))
 			{
-				int monsterHP = r.nextInt(50);
-				if (monsterHP <= 30)
+				monsterHP = r.nextInt(20);
+				if (monsterHP <= 9)
 				{
-					monsterHP = 30;
+					monsterHP = 10;
 				}
-			
-				int monsterDamage = r.nextInt(30);
-				if (monsterDamage <= 20)
+				
+				 monsterDamage = r.nextInt(10);
+				if (monsterDamage <= 4)
 				{
-					monsterDamage = 20;
+					monsterDamage = 5;
 				}
 			
 				System.out.println("\tMonster HP: " + monsterHP + "\n\tMonster Damage: " + monsterDamage);
@@ -168,16 +319,16 @@ public class ShadowsEmbrace
 			//SKELETON STATS
 			else if (monsterRandomizer.equals("Skeleton"))
 			{
-				int monsterHP = r.nextInt(55);
-				if (monsterHP <= 25)
+				 monsterHP = r.nextInt(20);
+				if (monsterHP <= 9)
 				{
-					monsterHP = 25;
+					monsterHP = 10;
 				}
 				
-				int monsterDamage = r.nextInt(50);
-				if (monsterDamage <= 40)
+				 monsterDamage = r.nextInt(10);
+				if (monsterDamage <= 4)
 				{
-					monsterDamage = 40;
+					monsterDamage = 5;
 				}
 				
 				System.out.println("\tMonster HP: " + monsterHP + "\n\tMonster Damage: " + monsterDamage);
@@ -186,16 +337,16 @@ public class ShadowsEmbrace
 			//WRAITH STATS
 			else if (monsterRandomizer.equals("Wraith"))
 			{
-				int monsterHP = r.nextInt(50);
-				if (monsterHP <= 35)
+				 monsterHP = r.nextInt(20);
+				if (monsterHP <= 9)
 				{
-					monsterHP = 35;
+					monsterHP = 10;
 				}
 				
-				int monsterDamage = r.nextInt(40);
-				if (monsterDamage <= 35)
+				 monsterDamage = r.nextInt(10);
+				if (monsterDamage <= 4)
 				{
-					monsterDamage = 35;
+					monsterDamage = 5;
 				}
 				
 				System.out.println("\tMonster HP: " + monsterHP + "\n\tMonster Damage: " + monsterDamage);
@@ -204,16 +355,16 @@ public class ShadowsEmbrace
 			//ZOMBIE STATS
 			else if (monsterRandomizer.equals("Zombie"))
 			{
-				int monsterHP = r.nextInt(55);
-				if (monsterHP <= 35)
+				 monsterHP = r.nextInt(20);
+				if (monsterHP <= 9)
 				{
-					monsterHP = 35;
+					monsterHP = 10;
 				}
 				
-				int monsterDamage = r.nextInt(35);
-				if (monsterDamage <= 25)
+				 monsterDamage = r.nextInt(10);
+				if (monsterDamage <= 4)
 				{
-					monsterDamage = 25;
+					monsterDamage = 5;
 				}
 				
 				System.out.println("\tMonster HP: " + monsterHP + "\n\tMonster Damage: " + monsterDamage);
@@ -222,16 +373,16 @@ public class ShadowsEmbrace
 			//VAMPIRE STATS
 			else if (monsterRandomizer.equals("Vampire"))
 			{
-				int monsterHP = r.nextInt(40);
-				if (monsterHP <= 10)
+				 monsterHP = r.nextInt(20);
+				if (monsterHP <= 9)
 				{
 					monsterHP = 10;
 				}
 				
-				int monsterDamage = r.nextInt(60);
-				if (monsterDamage <= 50)
+				 monsterDamage = r.nextInt(10);
+				if (monsterDamage <= 4)
 				{
-					monsterDamage = 50;
+					monsterDamage = 5;
 				}
 				
 				System.out.println("\tMonster HP: " + monsterHP + "\n\tMonster Damage: " + monsterDamage);
@@ -245,18 +396,12 @@ public class ShadowsEmbrace
 	{
 		System.out.println(">Your HP: " + playerHP);
 		
-		if (monsterHP > 0)
-		{
-			System.out.println(">" + monsterRandomizer + "'s HP: " + monsterHP);
-		}
-		else if (monsterHP <= 0)
-		{
-			System.out.println(">" + monsterRandomizer + "'s HP: " + 0);
-		}
+	
 		
 		System.out.println("Choose:");
-		System.out.println("\n\t[1]: Attack");
+		System.out.println("\n\t[1]: Basic Attack");
 		System.out.println("\t[2]: Use an item.");
+		System.out.println("\t[3]: Use Skills.");
 		System.out.println("\n------------------------------------------------------------------\n");
 		System.out.print("Select: ");
 		choice = s.nextLine();
@@ -276,6 +421,29 @@ public class ShadowsEmbrace
 			heal();
 		}
 		
+		else if (choice.equals("3"))
+		{
+			if (role.equals("1"))
+			{
+				warriorSkills();
+			}
+			
+			else if (role.equals("2"))
+			{
+				mageSkills();			
+			}
+			
+			else if (role.equals("3"))
+			{
+				archerSkills();
+			}
+			
+			else 
+			{
+				System.out.println("Invalid Command!");
+			}
+		}
+		
 		else
 		{
 			System.out.println("Invalid Command!");
@@ -283,144 +451,13 @@ public class ShadowsEmbrace
 	}
 	
 	
-	//OLD ATTACK PUBLIC VOID
+	//UPDATED ATTACK PUBLIC VOID
 	public void monsterBattleMode()
 	{
-		currentPlayerDamage = r.nextInt(playerDamage);
-		if (currentPlayerDamage <= 25)
-		{
-			currentPlayerDamage = 25;
-		}
-		playerHP = playerHP - monsterDamage;
-		monsterHP = monsterHP - currentPlayerDamage;
-		System.out.println("You attacked the monster and dealt " + currentPlayerDamage + " damage!");
-		System.out.println("The monster attacked you for " + monsterDamage);
 		
-		/*System.out.println("\nMonster HP: " + monsterHP + );
-		System.out.println("Your HP: " + playerHP);
-		System.out.println("Please enter (1) to continue");
-		choice = s.nextInt();
 		
-		if(monsterCounter<=0 && monsterHP <= 0)
-		{
-			win(); 
-		} 
-		
-		else if (monsterHP <= 0)
-		{
-			System.out.println("You defeated the " + monsterRandomizer + "!");
-			fight();
-		}
-		else if(monsterHP > 0)
-		{
-			attack();
-			
-			if(playerHP <= 0)
-			{ 
-				dead(); 
-			} 
-			
-			else if(playerHP > 0)
-			{
-				attack();
-			}
-		}*/
 		
 	}
-	
-	/*public void monsterstats()
-	{
-		//GHOUL STATS
-		if (monsterRandomizer.equals("Ghoul"))
-		{
-			int monsterHP = r.nextInt(50);
-			if (monsterHP <= 30)
-			{
-				monsterHP = 30;
-			}
-			
-			int monsterDamage = r.nextInt(30);
-			if (monsterDamage <= 20)
-			{
-				monsterDamage = 20;
-			}
-			
-			System.out.println("\tMonster HP: " + monsterHP + "\n\tMonster Damage: " + monsterDamage);
-			monsterFight();
-		}
-		//SKELETON STATS
-		else if (monsterRandomizer.equals("Skeleton"))
-		{
-			int monsterHP = r.nextInt(55);
-			if (monsterHP <= 25)
-			{
-				monsterHP = 25;
-			}
-			
-			int monsterDamage = r.nextInt(50);
-			if (monsterDamage <= 40)
-			{
-				monsterDamage = 40;
-			}
-			
-			System.out.println("\tMonster HP: " + monsterHP + "\n\tMonster Damage: " + monsterDamage);
-			monsterFight();
-		}
-		//WRAITH STATS
-		else if (monsterRandomizer.equals("Wraith"))
-		{
-			int monsterHP = r.nextInt(50);
-			if (monsterHP <= 35)
-			{
-				monsterHP = 35;
-			}
-			
-			int monsterDamage = r.nextInt(40);
-			if (monsterDamage <= 35)
-			{
-				monsterDamage = 35;
-			}
-			
-			System.out.println("\tMonster HP: " + monsterHP + "\n\tMonster Damage: " + monsterDamage);
-			monsterFight();
-		}
-		//ZOMBIE STATS
-		else if (monsterRandomizer.equals("Zombie"))
-		{
-			int monsterHP = r.nextInt(55);
-			if (monsterHP <= 35)
-			{
-				monsterHP = 35;
-			}
-			
-			int monsterDamage = r.nextInt(35);
-			if (monsterDamage <= 25)
-			{
-				monsterDamage = 25;
-			}
-			
-			System.out.println("\tMonster HP: " + monsterHP + "\n\tMonster Damage: " + monsterDamage);
-			monsterFight();
-		}
-		//VAMPIRE STATS
-		else if (monsterRandomizer.equals("Vampire"))
-		{
-			int monsterHP = r.nextInt(40);
-			if (monsterHP <= 10)
-			{
-				monsterHP = 10;
-			}
-			
-			int monsterDamage = r.nextInt(60);
-			if (monsterDamage <= 50)
-			{
-				monsterDamage = 50;
-			}
-			
-			System.out.println("\tMonster HP: " + monsterHP + "\n\tMonster Damage: " + monsterDamage);
-			monsterFight();
-		}
-	}*/
 		
 	public void dead()
 	{
