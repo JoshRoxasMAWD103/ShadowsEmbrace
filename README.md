@@ -8,6 +8,7 @@ TO-DO LIST
 1. Fix Battle Mode.
 2. Add second boss.
 3. Implement use of armor
+4. Implement Basic Attack
 
 UPDATES AS OF JANUARY 4 2021
 1. Implemented use of Skills per role.
