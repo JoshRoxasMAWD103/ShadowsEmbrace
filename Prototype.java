@@ -8,7 +8,7 @@ public class ShadowsEmbrace
 	Scanner enterScanner = new Scanner(System.in);
 	
 	
-	boolean hasArmor = true;
+
 	
 	
 	//PLAYER VARIABLES
@@ -82,11 +82,7 @@ public class ShadowsEmbrace
 			playerClass = "Warrior";
 			playerWeapon = "Long Sword";
 			playerSkills = "\n\t[1]Punch \n\t[2]Blade Surge \n\t[3]Hail of Blades";
-			// TO IMPLEMENT THE ARMOR FUNCTION
-			if (playerArmor > 0)
-			{
-				hasArmor = true;
-			}
+
 			
 		}
 		
