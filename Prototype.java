@@ -7,6 +7,10 @@ public class ShadowsEmbrace
 	Scanner s = new Scanner(System.in);
 	Scanner enterScanner = new Scanner(System.in);
 	
+	
+	boolean hasArmor = true;
+	
+	
 	//PLAYER VARIABLES
 	String playerName, choice, role, playerWeapon, playerClass, playerSkills;
 	int maxPlayerHP, maxPlayerMana, maxPlayerArmor, 
@@ -19,7 +23,7 @@ public class ShadowsEmbrace
 	int monsterHP;
 	int monsterDamage;
 	String monster[] = {"Skeleton", "Ghoul", "Wraith", "Zombie", "Vampire",};
-        String monsterRandomizer;
+    String monsterRandomizer;
 	int monsterCounter = 5;
 	int abbadonDamage = 40;
 	int abbadonHP = 100;
@@ -32,6 +36,7 @@ public class ShadowsEmbrace
 	int healLeft = 3;
 	int revive; // Used to finish the game
 	int key;
+	// NOT IMPLEMENTED YET boolean running = true; 
 		
 	public static void main(String[] args) 
 	{
@@ -77,6 +82,11 @@ public class ShadowsEmbrace
 			playerClass = "Warrior";
 			playerWeapon = "Long Sword";
 			playerSkills = "\n\t[1]Punch \n\t[2]Blade Surge \n\t[3]Hail of Blades";
+			// TO IMPLEMENT THE ARMOR FUNCTION
+			if (playerArmor > 0)
+			{
+				hasArmor = true;
+			}
 			
 		}
 		
@@ -97,7 +107,7 @@ public class ShadowsEmbrace
 			
 			playerClass = "Mage";
 			playerWeapon = "Staff";
-			playerSkills = "\n\t[]Fireball \n\t[2]Thunderbolt \n\t[3]Hinokami Kagura";
+			playerSkills = "\n\t[1]Fireball \n\t[2]Thunderbolt \n\t[3]Hinokami Kagura";
 		}
 		
 		else if (role.equals("3"))
@@ -139,8 +149,6 @@ public class ShadowsEmbrace
 		
 	}
 	
-	//DIFFERENT TYPE OF SKILLS PER ROLE STARTS HERE
-	
 	public void warriorSkills ()
 	{
 		
@@ -152,6 +160,7 @@ public class ShadowsEmbrace
 		{
 			System.out.println("\nYou used Punch to damage the enemy for 5 HP!");
 			monsterHP = monsterHP - 5;
+			firstMonsterWave();
 		}
 		
 		
@@ -164,11 +173,15 @@ public class ShadowsEmbrace
 			System.out.println("\nYou used Blade Surge to damage the enemy for 15 HP!");
 			
 			monsterHP = monsterHP - 15;
+			firstMonsterWave();
 			}
 			
 			else 
 			{
 				System.out.println("\nYou need 10 mana to cast this skill! You currently have " + playerMana + " mana");
+				System.out.println("Press Enter to continue");
+				choice = s.nextLine();
+				firstMonsterWave();
 			}
 		}
 		
@@ -180,17 +193,23 @@ public class ShadowsEmbrace
 			playerMana = playerMana - 40;
 			System.out.println("\nYou used Hail of Blades to damage the enemy for 100HP!");
 			monsterHP = monsterHP - 100;
-		
+			firstMonsterWave();
 			}
 			else 
 			{
 				System.out.println("\nYou need 40 mana to cast this skill! You currently have " + playerMana + " mana");
+				System.out.println("Press Enter to continue");
+				choice = s.nextLine();
+				firstMonsterWave();
 			}
 		}
 	}
 	
 	public void mageSkills()
 	{
+		System.out.println("Choose a skill " + "\n\t[1]Fireball \n\t[2]Thunderbolt \n\t[3]Hinokami Kagura");
+		System.out.print("Select: ");
+		skillChoice = s.nextInt();
 		if (skillChoice == 1)
 		{
 			if (playerMana >= 5)
@@ -198,11 +217,15 @@ public class ShadowsEmbrace
 			playerMana = playerMana - 5;
 			System.out.println("You used Fireball to damage the enemy for 10 HP!");
 			monsterHP = monsterHP - 10;
+			firstMonsterWave();
 			}
 			
 			else 
 			{
 				System.out.println("You need 5 mana to cast this skill! You currently have " + playerMana + " mana");
+				System.out.println("Press Enter to continue");
+				choice = s.nextLine();
+				firstMonsterWave();
 			}
 		}
 		
@@ -215,11 +238,15 @@ public class ShadowsEmbrace
 			System.out.println("You used Thunder Bolt to damage the enemy for 20HP!");
 			
 			monsterHP = monsterHP - 20;
+			firstMonsterWave();
 			}
 			
 			else 
 			{
 				System.out.println("You need 40 mana to cast this skill! You currently have " + playerMana + " mana");
+				System.out.println("Press Enter to continue");
+				choice = s.nextLine();
+				firstMonsterWave();
 			}
 		}
 		
@@ -231,11 +258,15 @@ public class ShadowsEmbrace
 			playerMana = playerMana - 100;
 			System.out.println("You used Hinokami Kagura to damage the enemy for 150HP!");
 			monsterHP = monsterHP - 150;
+			firstMonsterWave();
 		
 			}
 			else 
 			{
 				System.out.println("You need 100 mana to cast this skill! You currently have " + playerMana + " mana");
+				System.out.println("Press Enter to continue");
+				choice = s.nextLine();
+				firstMonsterWave();
 			}
 		
 		}
@@ -243,12 +274,14 @@ public class ShadowsEmbrace
 	
 	public void archerSkills()
 	{
+		System.out.println("Choose a skill " + "\n\\t[1]Arrow Shot \\n\\t[2]Sectral Arrow \\n\\t[3]Enchanted Arrow");
+		
 		if (skillChoice == 1)
 		{
 			
 			System.out.println("You used Arrow Shot to damage the enemy for 10HP!");
 			monsterHP = monsterHP - 10;
-			
+			firstMonsterWave();
 		}
 		
 		
@@ -260,11 +293,13 @@ public class ShadowsEmbrace
 			System.out.println("You used Spectral Arrow to damage the enemy for 20HP!");
 			
 			monsterHP = monsterHP - 20;
+			firstMonsterWave();
 			}
 			
 			else 
 			{
 				System.out.println("You need 25 mana to cast this skill! You currently have " + playerMana + " mana");
+				firstMonsterWave();
 			}
 		}
 		
@@ -276,21 +311,23 @@ public class ShadowsEmbrace
 			playerMana = playerMana - 70;
 			System.out.println("You used Enchanted Arrow to damage the enemy for 120 HP!");
 			monsterHP = monsterHP - 120;
-		
+			firstMonsterWave();
 			}
 			else 
 			{
 				System.out.println("You need 70 mana to cast this skill! You currently have " + playerMana + " mana");
+				System.out.println("Press Enter to continue");
+				choice = s.nextLine();
+				firstMonsterWave();
 			}
 		
 		}
 	}
 	
-	//DIFFERENT TYPE OF SKILLS PER ROLE ENDS HERE
-	
-	
 	public void firstMonsterWave()
 	{
+		
+		
 		while (monsterCounter > 0)
 		{
 			monsterCounter--;
@@ -388,6 +425,11 @@ public class ShadowsEmbrace
 				System.out.println("\tMonster HP: " + monsterHP + "\n\tMonster Damage: " + monsterDamage);
 				monsterFight();
 			}
+			
+			if (playerHP > 0 && monsterCounter == 0)
+			{
+				firstBossFight();
+			}
 		}
 	}
 	
@@ -408,7 +450,11 @@ public class ShadowsEmbrace
 		
 		if(choice.equals("1"))
 		{
-			monsterBattleMode();
+			monsterHP = monsterHP - playerDamage;
+			playerHP = playerHP - monsterDamage;
+			
+			System.out.println("You attacked a monster for " + playerDamage + " damage. While the monster attacked you for " + monsterDamage + " damage.");
+			firstMonsterWave();
 		}
 		
 		else if(choice.equals("2"))
@@ -441,12 +487,14 @@ public class ShadowsEmbrace
 			else 
 			{
 				System.out.println("Invalid Command!");
+				monsterFight();
 			}
 		}
 		
 		else
 		{
 			System.out.println("Invalid Command!");
+			monsterFight();
 		}
 	}
 	
@@ -454,8 +502,7 @@ public class ShadowsEmbrace
 	//UPDATED ATTACK PUBLIC VOID
 	public void monsterBattleMode()
 	{
-		
-		
+	
 		
 	}
 		
@@ -531,23 +578,117 @@ public class ShadowsEmbrace
 	
 	public void firstBossFight()
 	{
+			while (abbadonHP > 0)
+			{
 			System.out.println("\nYou encountered the first boss Abbadon");
 			System.out.println("\n------------------------------------------------------------------\n");
 			System.out.println("\t >BOSS FIGHT!");
 			System.out.println("\t>Your HP: "+ playerHP);
 			System.out.println("\t>Abbadon's HP: " + abbadonHP);
 			System.out.println("Choose:");
-			System.out.println("[1.] Continue");
+			System.out.println("[1.] Basic Attack");
 			System.out.println("[2.] Heal");
+			System.out.println("[3.] Use Skills.");
 			System.out.println("\n------------------------------------------------------------------\n");
 			System.out.print("Select: ");
-			choice = s.nextLine();	
+			int choices = s.nextInt();
+			
+			
+			if (choices == 1)
+			{
+				abbadonHP = abbadonHP - playerDamage;
+				playerHP = playerHP - abbadonDamage;
+				
+				System.out.println("You used basic Attack to deal " + playerDamage + " damage to abbadon!");
+				firstBossFight();
+				
+			}
+			
+			else if (choices == 2)
+			{
+				healLeft--;
+				heal();
+			}
+			
+			else if (choices == 3)
+			{
+				if (role.equals("1"))
+				{
+					System.out.println("Choose a skill! " + "\n\t[1]Punch \n\t[2]Blade Surge \n\t[3]Hail of Blades");
+					
+					System.out.print("Choose: ");
+					skillChoice = s.nextInt();
+					if (skillChoice == 1)
+					{
+						System.out.println("\nYou used Punch to damage Abbadon for 5 HP!");
+						monsterHP = monsterHP - 5;
+						firstBossFight();
+					}
+					
+					
+					
+					else if (skillChoice == 2)
+					{
+						if (playerMana >= 10)
+						{
+						playerMana = playerMana -10;
+						System.out.println("\nYou used Blade Surge to damage Abbadon for 15 HP!");
+						
+						monsterHP = monsterHP - 15;
+						firstBossFight();
+						}
+						
+						else 
+						{
+							System.out.println("\nYou need 10 mana to cast this skill! You currently have " + playerMana + " mana");
+							System.out.println("Press Enter to continue");
+							choice = s.nextLine();
+							firstBossFight();
+						}
+					}
+					
+					
+					else if (skillChoice == 3)
+					{
+						if (playerMana >= 40)
+						{
+						playerMana = playerMana - 40;
+						System.out.println("\nYou used Hail of Blades to damage Abbadon for 100HP!");
+						monsterHP = monsterHP - 100;
+						firstBossFight();
+						}
+						else 
+						{
+							System.out.println("\nYou need 40 mana to cast this skill! You currently have " + playerMana + " mana");
+							System.out.println("Press Enter to continue");
+							choice = s.nextLine();
+							firstBossFight();
+						}
+					}
+				}
+				
+				else if (role.equals("2"))
+				{
+					mageSkills();			
+				}
+				
+				else if (role.equals("3"))
+				{
+					archerSkills();
+				}
+			}
+			
+				else 
+				{
+					System.out.println("Invalid Command!");
+					firstBossFight();
+				}
+			
+			
+			
+			}
 	}
 	
-	
-	
-		
-		
 	
 	
 	
